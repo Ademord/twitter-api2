@@ -12,6 +12,6 @@
 		<button>Fetch tweets!</button>
 	</form>
 	{% for t in tweets %}
-		<p>{{ t['text'] }}</p>
+		<p>{% raw t['text'] %}</p>
 	{% end %}
 {% end %}

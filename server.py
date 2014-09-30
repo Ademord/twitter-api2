@@ -25,14 +25,26 @@ class MainHandler(tornado.web.RequestHandler):
 		html = loader.load("tweet_list.html").generate(tweets = tweets, count=count, hashtag = hashtag[1:])
 		self.write(html)
 
-	
+
+def main():
+	application = tornado.web.Application([
+	(r"/", MainHandler),
+	])
+	http_server = tornado.httpserver.HTTPServer(application)
+	port = int(os.environ.get("PORT", 5000))
+	http_server.listen(port)
+	tornado.ioloop.IOLoop.instance().start()
+ 
+if __name__ == "__main__":
+	main()
+"""
 application = tornado.web.Application([
     (r"/", MainHandler),
 ])
 
 
 if __name__ == "__main__":
-    application.listen(8888)
+    application.listen(80)
     tornado.ioloop.IOLoop.instance().start()
-	
-	
+
+"""

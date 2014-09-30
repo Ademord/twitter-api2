@@ -12,6 +12,6 @@
 		<button>Fetch tweets!</button>
 	</form>
 	{% for t in tweets %}
-		<p>{% raw t['text'] %}</p>
+		<p><img src="https://g.twimg.com/Twitter_logo_blue.png" class="twitter_small" width="15" height="15" alt="">{% raw t['text'] %}</p>
 	{% end %}
 {% end %}

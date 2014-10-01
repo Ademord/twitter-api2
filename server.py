@@ -17,7 +17,7 @@ class Templates(object):
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-		count_str = self.get_argument("count", default=10)
+		count_str = self.get_argument("count", default=50)
 		count = int(count_str)
 
 		hashtag = self.get_argument("hashtag", default="python")

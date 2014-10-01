@@ -31,6 +31,6 @@ def replace_entities(text, grouped_entities, **replacers):
 
 def tweet_replace_links(tweet):
 	def url_replacer(url):
-		return '<a href="%s">%s</a>' % (url['expanded_url'].encode('utf-8'), url['display_url'].encode('utf-8'))
+		return u'<a href="%s">%s</a>' % (url['expanded_url'], url['display_url'])
 
-	return replace_entities(tweet['text'].encode('utf-8'), tweet['entities'], urls = url_replacer)
+	return replace_entities(tweet['text'], tweet['entities'], urls = url_replacer)

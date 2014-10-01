@@ -1,10 +1,5 @@
 import sys
 
-if sys.version_info[0] == 3:
-	from io import StringIO
-else:
-	from cStringIO import StringIO
-
 
 def replace_entities(text, grouped_entities, **replacers):
 	entities = []
@@ -18,7 +13,7 @@ def replace_entities(text, grouped_entities, **replacers):
 
 	entities.sort(key = lambda x: x[0][0])
 
-	output = StringIO()
+	output = ''
 	last_idx = 0
 
 	for entity_pair in entities:
@@ -26,16 +21,16 @@ def replace_entities(text, grouped_entities, **replacers):
 
 		i, last_idx = indices
 
-		output.write(text[: i])
-		output.write(entity)
+		output+=(text[: i])
+		output+=(entity)
 
 
-	output.write(text[last_idx :])
+	output+=(text[last_idx :])
 
-	return output.getvalue()
+	return output
 
 def tweet_replace_links(tweet):
 	def url_replacer(url):
-		return '<a href="%s">%s</a>' % (url['expanded_url'], url['display_url'])
+		return '<a href="%s">%s</a>' % (url['expanded_url'].encode('utf-8'), url['display_url'].encode('utf-8'))
 
 	return replace_entities(tweet['text'].encode('utf-8'), tweet['entities'], urls = url_replacer)

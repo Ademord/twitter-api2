@@ -6,6 +6,7 @@ import tornado.httpserver
 import os
 import os.path
 import re
+from replacer import tweet_replace_links
 
 loader = tornado.template.Loader(os.path.join(os.getcwd(), "templates"))
 
@@ -25,7 +26,8 @@ class MainHandler(tornado.web.RequestHandler):
 		
 		tweets = search_hashtag(hashtag,count)
 		for t in tweets:
-			t['text'] = re.sub(r'(http+[^ ]+[a-zA-Z0-9])+.+[a-zA-Z0-9]',r'<a href="\1">\1</a>', t['text'])
+			#t['text'] = re.sub(r'(http+[^ ]+[a-zA-Z0-9])+.+[a-zA-Z0-9]',r'<a href="\1">\1</a>', t['text'])
+			t['text'] = tweet_replace_links(t)
 		html = loader.load("tweet_list.html").generate(tweets = tweets, count=count, hashtag = hashtag[1:])
 		self.write(html)
 

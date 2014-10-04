@@ -19,11 +19,12 @@ def replace_entities(text, grouped_entities, **replacers):
 	for entity_pair in entities:
 		indices, entity = entity_pair
 
-		i, last_idx = indices
+		i, j = indices
 
-		output+=(text[: i])
+		output+=(text[last_idx: i])
 		output+=(entity)
-
+		
+		last_idx = j
 
 	output+=(text[last_idx :])
 
@@ -33,4 +34,4 @@ def tweet_replace_links(tweet):
 	def url_replacer(url):
 		return u'<a href="%s">%s</a>' % (url['expanded_url'], url['display_url'])
 
-	return replace_entities(tweet['text'], tweet['entities'], urls = url_replacer)
+	return replace_entities(tweet['text'], tweet['entities'], urls = url_replacer, media = url_replacer)

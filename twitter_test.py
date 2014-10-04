@@ -18,7 +18,7 @@ def search_hashtag(hashtag, cant):
 	return tweets
 	
 def main():
-	search_hashtag("#steam",5)
+	print search_hashtag("#steam",20)
 	  
 if __name__ == '__main__':
     main()

@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block body %}
+	
+	<form action="" method="get">
+		<label for="">Tweet Count:</label>
+		<input type="number" name="count" value="{{ count }}">
+		
+		<label for="">Hashtag:</label>
+		<input type="text" name="hashtag" value="{{ hashtag }}">
+		
+		<button>Fetch tweets!</button>
+	</form>
+	{% for t in tweets %}
+		<p><img src="https://g.twimg.com/Twitter_logo_blue.png" class="twitter_small" width="15" height="15" alt="">{% raw t['text'] %}</p>
+	{% end %}
+{% end %}

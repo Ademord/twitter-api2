@@ -17,16 +17,18 @@ class Templates(object):
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-		count_str = self.get_argument("count", default=50)
+		count_str = self.get_argument("count", default=10)
 		count = int(count_str)
 
-		hashtag = self.get_argument("hashtag", default="python")
+		hashtag = self.get_argument("hashtag", default="steam")
 		if not hashtag.startswith("#"):
 			hashtag = "#" + hashtag
 		
 		tweets = search_hashtag(hashtag,count)
 		for t in tweets:
 			#t['text'] = re.sub(r'(http+[^ ]+[a-zA-Z0-9])+.+[a-zA-Z0-9]',r'<a href="\1">\1</a>', t['text'])
+			if 't.co' in t['text']:
+				print t
 			t['text'] = tweet_replace_links(t)
 		html = loader.load("tweet_list.html").generate(tweets = tweets, count=count, hashtag = hashtag[1:])
 		self.write(html)

@@ -1,10 +1,10 @@
 from twython import Twython
 
 def search_hashtag(hashtag, cant):
-	TWITTER_APP_KEY = 'KlERfpepfwGbr6mFXnJmOlGjB' #supply the appropriate value
-	TWITTER_APP_KEY_SECRET = '1eWnSzH4u4uwGghVVDFjkbPnr81pY28dggbHdW2vlNuBByymxU' 
-	TWITTER_ACCESS_TOKEN = '73236009-dRCxQMdhcty1Vt2khgAD2umxfLU1azwIuMNVoX1Q7'
-	TWITTER_ACCESS_TOKEN_SECRET = 'NRS2pCuGMDy12P5se6qF3u57Ig5vSEiSM7DcnIscAnn2K'
+	TWITTER_APP_KEY = '' #supply the appropriate value
+	TWITTER_APP_KEY_SECRET = '' 
+	TWITTER_ACCESS_TOKEN = ''
+	TWITTER_ACCESS_TOKEN_SECRET = ''
 
 	t = Twython(app_key=TWITTER_APP_KEY, 
 				app_secret=TWITTER_APP_KEY_SECRET, 
